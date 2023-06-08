@@ -1,0 +1,2 @@
+#!/bin/bash
+ls -1Ap | awk '{printf "%s%s",sep,$0; sep=", "} END {print ""}' | sed 's/\([^\/]\)$/\1\//'
