@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -1apv | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/, /g' | sed 's/,$/\n/' | tr -d '\n'
+ls -1apv | sed -z 's/\n/, /g; s/,$/\n/'
