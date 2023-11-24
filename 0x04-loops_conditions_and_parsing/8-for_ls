@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
 for file in *; do
-    if [[ -f $file && $file != .* && $file =~ -(.*)$ ]]; then
-        echo "${BASH_REMATCH[1]}"
-    fi
+        echo "$file" | cut -d'-' -f2
 done
 
