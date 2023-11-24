@@ -2,7 +2,7 @@
 # displays Best School 10 times.
 
 count=1
-while [ $count -lt 101 ]
+while [ $count -le 100 ]
 do
     if [ $((count%15)) = 0 ]
     then
