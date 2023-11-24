@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-for file in *; do
-        echo "$file" | cut -d'-' -f2
+for file in *
+do
+	echo "$file" | cut -d'-' -f2
 done
 
