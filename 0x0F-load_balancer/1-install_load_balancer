@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Install HAproxy on a server
+apt-get -y update
+apt-get -y install haproxy=1.6.\*
+
+echo '
+frontend sammykingx.tech
+        bind 0:80
+        default_backend web_servers
+
+backend web_servers
+        balance roundrobin
+        server 64820-web-01 54.158.82.18:80
+        server 64820-web-02 35.174.207.38:80
+' >> /etc/haproxy/haproxy.cfg
+
+service haproxy restart
