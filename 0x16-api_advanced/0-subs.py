@@ -1,16 +1,19 @@
 #!/usr/bin/python3
-"""function that returns the number of subscribers"""
-
 import requests
+"""contains number_of_subscribers function"""
 
 
 def number_of_subscribers(subreddit):
-    """function that queries the Reddit API"""
-    url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
-    headers = {'User-Agent': 'My User Agent 1.0'}
-    response = requests.get(url, headers=headers)
-    if response.status_code == 200:
+    """
+    Queries the Reddit API and returns the number of subscribers for a given subreddit.
+    If the subreddit is invalid, returns 0.
+    """
+    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    headers = {"User-Agent": "Custom User Agent"}
+
+    try:
+        response = requests.get(url, headers=headers)
         data = response.json()
-        return data.get('data').get('subscribers')
-    else:
+        return data["data"]["subscribers"]
+    except (requests.RequestException, KeyError):
         return 0
