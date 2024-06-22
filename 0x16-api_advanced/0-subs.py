@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import requests
+"""contains number_of_subscribers"""
 
 def number_of_subscribers(subreddit):
     """
