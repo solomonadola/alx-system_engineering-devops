@@ -6,24 +6,11 @@ def number_of_subscribers(subreddit):
     """
     if subreddit is None or not isinstance(subreddit, str):
         return 0
-
-    url = "https://oauth.reddit.com/r/{}/about.json".format(subreddit)  # Use the OAuth endpoint
+    url = "https://oauth.reddit.com/r/{}/about.json".format(subreddit)
     headers = {'User-Agent': 'MyApp v1.0 by u/Silver_Oil1466'}
-
-    try:
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()  # Raise an exception if the request fails
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
         data = response.json()
-        subscribers = data.get("data", {}).get("subscribers", 0)
-        print(subscribers)
-        return subscribers
-    except requests.RequestException as e:
-        print(e)
+        return data.get('data').get('subscribers')
+    else:
         return 0
-
-# Example usage:
-if __name__ == "__main__":
-    subreddit_name = input("Enter a subreddit name: ")
-    subscribers = number_of_subscribers(subreddit_name)
-    print("Subscribers for r/{}: {}".format(subreddit_name, subscribers))
-
