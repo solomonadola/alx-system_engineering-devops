@@ -13,7 +13,10 @@ def number_of_subscribers(subreddit):
     if subreddit is None or not isinstance(subreddit, str):
         return 0
     url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
-    headers = {'User-Agent': 'MyApp v1.0 by u/Silver_Oil1466'}
+    headers = {
+        "User-Agent": "0x16-api_advanced:project:\
+v1.0.0 (by /u/Silver_Oil1466)"
+    }
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
         data = response.json()
